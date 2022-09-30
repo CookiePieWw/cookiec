@@ -1,10 +1,11 @@
 #include <cookiec.hpp>
+#include <lexer.hpp>
 #include <getopt.h>
 
 static void help();
 static void version();
 
-static std::string_view filename = "srcfile";
+static std::string filename = "srcfile";
 
 static const struct option longopts[] =
 {
@@ -36,8 +37,10 @@ int main(int argc, char **argv)
 				break;
 		}
 	}
-	
+
 	if (l) {
+		auto src = lexer::read_file(filename);
+		//lexer::lexical_analyze(src);
 		std::cout << "src filename: " << filename << std::endl;
 		// lexial_analyze(filename);
 	}
