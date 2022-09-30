@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 }
 
 void version() {
-	std::cout << "cookiec 0.1\n"
+	std::cout << "cookiec " << VERSION << "\n"
 			  << "Copyright (C) 2022 CookiePie\n";
 }
 

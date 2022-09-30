@@ -1,6 +1,7 @@
 #ifndef _TOY_COMPILER
 #define _TOY_COMPILER
 
+#define VERSION 0.1
 #include <iostream>
 #include <string>
 #include <string_view>
