@@ -3,7 +3,7 @@
 !*/
 !*.hpp
 !*.cpp
-!Makefile
+!CMakeLists.txt
 !.gitignore
 !README.md
 build
