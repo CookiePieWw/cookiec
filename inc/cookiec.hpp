@@ -19,6 +19,8 @@
 #define INFO(...)
 #endif
 
+extern std::string filename;
+
 inline void error(const char *fname, int lineno, const char *fxname, const char *msg) {
 	// std::cerr << std::format("[%s, %d, %s] ERROR: ", fname, lineno, fxname) << msg << std::endl;
 	std::cerr << '[' << fname << ", " << lineno << ", " << fxname << "] " RED("error") ": " << msg << std::endl; // WE NEED STD::FORMAT!!
@@ -28,8 +30,8 @@ inline void info(const char *fname, int lineno, const char *fxname, const char *
 	std::clog << '[' << fname << ", " << lineno << ", " << fxname << "] " BLUE("info") ": " << msg << std::endl; // WE NEED STD::FORMAT!!
 }
 
-inline void compile_error(const char *fname, int lineno, const char *line, int pos, const char *msg) {
-	std::cout << fname << ':' << lineno << ':' << pos << ": " << msg << std::endl;
+inline void compile_error(const std::size_t lineno, const std::string &line, const std::size_t pos, const char *msg) {
+	std::cout << filename << ':' << lineno << ':' << pos << ": " << msg << std::endl;
 	std::cout << std::setiosflags(std::ios::right)
 						<< std::setw(5) << lineno
 						<< std::setiosflags(std::ios::left)

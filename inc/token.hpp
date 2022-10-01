@@ -1,25 +1,13 @@
-#ifndef _TOY_LEXER
-#include "cookiec.hpp"
+#ifndef _TOKEN
+#define _TOKEN
 #include <limits>
 
 namespace token {
-	constexpr std::size_t unknown = std::numeric_limits<std::size_t>::max();
-
-	enum trap_t {
-		KWORD,
-		DIRECT,
-		OP,
-		SBAR,
-		EQS,
-		NUM,
-		BRAKETS,
-		PASS,
-		ERROR,
-	};
-
 	enum token_t {
 		NUMBER,
 		VAR,
+		SPLIT,         // ,
+		BOUNDS,        // ;
 		// operators
 		ADD,           // +
 		MINUS,         // -
@@ -53,8 +41,11 @@ namespace token {
 		std::size_t pos;
 		std::size_t len;
 		token_t tk;
+		token (std::size_t a, std::size_t b, std::size_t c) : line(a), pos(b), len(c) {};
 		token (std::size_t a, std::size_t b, std::size_t c, token_t d) : line(a), pos(b), len(c), tk(d) {};
 	};
+
+	std::string tk_map(token_t);
 }
 
 #endif

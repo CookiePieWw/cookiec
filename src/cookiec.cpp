@@ -1,11 +1,12 @@
 #include <cookiec.hpp>
 #include <lexer.hpp>
+#include <token.hpp>
 #include <getopt.h>
 
 static void help();
 static void version();
 
-static std::string filename = "srcfile";
+std::string filename = "srcfile";
 
 static const struct option longopts[] =
 {
@@ -20,7 +21,7 @@ static const char *optstring = "vhlf:";
 int main(int argc, char **argv)
 {
 	int c;
-	bool l;
+	bool l = false;
 	while ((c = getopt_long(argc, argv, optstring, longopts, nullptr)) != -1) {
 		switch (c) {
 			case 'v':
@@ -38,11 +39,15 @@ int main(int argc, char **argv)
 		}
 	}
 
+	auto src = lexer::read_file(filename);
 	if (l) {
-		auto src = lexer::read_file(filename);
-		//lexer::lexical_analyze(src);
-		std::cout << "src filename: " << filename << std::endl;
-		// lexial_analyze(filename);
+		auto tokens = lexer::lexical_analyze(src);
+		for (const auto &i: tokens) {
+			for (const auto &j: i) {
+				std::cout << token::tk_map(j.tk) << ' ';
+			}
+			std::cout << std::endl;
+		}
 	}
 	return 0;
 }
