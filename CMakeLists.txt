@@ -14,6 +14,15 @@ add_executable(
 	${SOURCES}
 )
 
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
+	add_definitions(-DDEBUG)
+	add_compile_options(-g)
+	message(STATUS "Debug Mode")
+else ()
+	add_definitions(-DRELEASE)
+	message(STATUS "Release Mode")
+endif ()
+
 target_include_directories(
 		cookiec
     PUBLIC 
